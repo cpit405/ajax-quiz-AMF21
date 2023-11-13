@@ -10,6 +10,17 @@ getReposButton.addEventListener('click', async () => {
     const url = `https://api.github.com/users/${username}/repos`;
     const ulElement = document.getElementById('repos-list');
     // Fetch and display the list of repositories as li elements inside the ul element.
+    const response = await fetch(url);
+    const data = await response.json;
 
+      data.forEach((repo) => {
+                const listItem = document.createElement('li');
+             const link = document.createElement('a');
+                link.href=repo.html_url
+                link.textContent=repo.name 
+                listItem.innerHTML = repo.full_name;
+                ulElement.appendChild(listItem);
+            });
+    
 });
 
